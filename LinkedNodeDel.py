@@ -21,31 +21,53 @@ class Solution:
     
         def LinkedNodeReverse(head:ListNode)->ListNode:
 
-            Prev=ListNode()
+            Prev=None
 
  
             while head is not None:
+          
                 Ptemp=head
                 head=head.next
                 Ptemp.next=Prev
                 Prev=Ptemp
             
             return Prev
+        
+        def LinkedNodeDel(head:ListNode,n)->ListNode:
 
-        traverse(head)
-        traverse(LinkedNodeReverse(head))
+            cur1= head
+            cur2=head
+            for i in range(n):
+                cur1=cur1.next
+            if cur1 is None:
+                head=head.next
+                return head
+                    
+            while cur1.next is not None:
+                cur1=cur1.next
+                cur2=cur2.next
+            
+            temp=cur2.next
+            cur2.next=temp.next
 
-a=ListNode()
-b=ListNode()
-c=ListNode()
-a.val=1
-b.val=2
-c.val=3
+            return head
+        traverse(head)    
+        traverse(LinkedNodeDel(head,n))
+
+
+a=ListNode(1)
+b=ListNode(2)
+c=ListNode(3)
+d=ListNode(4)
+e=ListNode(5)
+
 a.next=b
 b.next=c
+c.next=d
+d.next=e
 
 s=Solution()
-s.removeNthFromEnd(a,3)
+s.removeNthFromEnd(a,4)
 
 
 
