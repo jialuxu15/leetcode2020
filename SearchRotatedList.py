@@ -21,6 +21,8 @@ class Solution:
                     return low
                 else:
                     return -1
+            else:
+                return -1
            
         
 
@@ -44,26 +46,39 @@ class Solution:
         def halfsearch(nums:[int],target:int):
             length=len(nums)
             half=int(length/2)
+            if length==0:
+                return -1
+            elif length==1:
+                if nums[0]==target:
+                    return 0
+                else:
+                    return -1
+            print(nums[:half],nums[half:])
             if Listinoder(nums[:half]):
-                res1=BinarySearch(nums[0:half],target)
+                res1=BinarySearch(nums[:half],target)
             else:
-                halfsearch(nums[:half],target)
+                res1=halfsearch(nums[:half],target)
+        
 
             if Listinoder(nums[half:]):
-                res2=BinarySearch(nums[half:],target)+half
+                res2=BinarySearch(nums[half:],target)
             else:
-                halfsearch(nums[half:],target)
+                res2=halfsearch(nums[half:],target)
+            if res2>-1:
+                res2+=half
             
-            if res1>0:
+            if res1>-1:
                 return res1
-            elif  res2>0:
+            elif  res2>-1:
                 return res2
-            return-1
+            else:
+                return -1
 
-        halfsearch([4,5,6,7,0,1,2],0)
+
+        return halfsearch([4,5,6,7,0,1,2],0)
         
 
 a=Solution()
-print(a.search([4,5,6,7,0,1,2],0))
+print(a.search([1,2],0))
 
                 
