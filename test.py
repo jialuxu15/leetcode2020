@@ -1,29 +1,17 @@
-import copy
 class Solution:
-    def combinationSum2(self, candidates: [int], target: int) -> [[int]]:
-        
-        candidates.sort()
-        def backtrack(num:list,target:int,choice:list,begin:int):
+    def lengthOfLastWord(self, s: str) -> int:
 
-            if sum(num)==target:
-                if len(result)>0:
-                    if num == result[-1]:
-                        return
-                result.append(copy.deepcopy(num))
-                 
-            elif sum(num)>target:
-                return    
-            for i in range(begin,len(choice)):
-                if i>0:
-                    if choice[i]==choice[i-1] and len(num)==0:
-                        continue
-                num.append(choice[i])
-                backtrack(num,target,choice,i+1)
-                num.pop(-1)
-                   
-        result=[]
-        backtrack([],target,candidates,0)
-        return result
-        
+
+        a=''
+        for i in range(len(s)-1,-1,-1):
+            if s[i] ==' ' and a=='':
+                continue
+            elif s[i]==' ' and len(a)>0:
+                break
+            else:
+                a+=s[i]
+                
+        return a,len(a)
+
 a=Solution()
-print(a.combinationSum2([4,2,5,2,5,3,1,5,2,2],9))
+print(a.lengthOfLastWord("hello world  "))
